@@ -9,7 +9,7 @@ def create_table(database_name:str,
     Args:
         database_name (str): created database name 
         table_name (str): table name 
-        columns (str): columns' data base
+        columns (str): columns' database
     """
     
     conn= sqlite3.connect(database_name)
