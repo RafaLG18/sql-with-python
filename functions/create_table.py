@@ -3,7 +3,7 @@ import sqlite3
 def create_table(database_name:str,
                  table_name:str,
                  columns:str,
-                 ):
+                 ) -> None:
     """Create a table in a database previously created
 
     Args:
