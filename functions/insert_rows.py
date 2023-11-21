@@ -11,15 +11,12 @@ def insert_one_row(
         table_name (str): table name 
         columns_name (str): A query specifying the columns
         values (str): Values to insert
-<<<<<<< HEAD
         
        Example:
         insert_one_row(database_name="database.db",
                table_name="tabela_amada",
                columns_name="id,nome_flor,qtd_petala_flor",
                values="2,'copo_de_leite',3")
-=======
->>>>>>> main
     """
     conn=sqlite3.connect(database_name)
     cursor=conn.cursor()
@@ -48,13 +45,12 @@ def insert_many_rows(database_name: str,
                columns_name="id,nome_flor,qtd_petala_flor",
                list_values=[(9,'flor do deserto',4),(10,'flor do deserto',5),(11,'flor do deserto',6)])
     """
+    
     conn = sqlite3.connect(database_name)
     cursor = conn.cursor()
-    cursor.executemany(
-        f"""
-        INSERT INTO {table_name} ({columns_name}) VALUES (?,?,?)
-        """,list_values
-    )
+    placeholders=','.join(['?' for _ in range(len(list_values[0]))])
+    query=f"INSERT INTO {table_name} ({columns_name}) VALUES ({placeholders})"
+    cursor.executemany(query,list_values)
     conn.commit()
     conn.close()
 
